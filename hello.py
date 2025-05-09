@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Body, Header
+from fastapi import FastAPI, Body, Header, Response
 
 app = FastAPI()
 
@@ -42,4 +42,10 @@ code=402
 @app.get("/happy", status_code=code)
 def greet():
     return code
+
+# инъекция HTTP-заголовков в ответе
+@app.get("/header/{name}/{value}")
+def header(name: str, value: str, response: Response):
+    response.headers[name] = value
+    return "normal body"
 
