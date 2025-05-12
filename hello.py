@@ -1,45 +1,56 @@
-from fastapi import FastAPI, Body, Header
+from fastapi import FastAPI, Body, Header, APIRouter
 
-app = FastAPI()
+routes = APIRouter(tags=["Chapter 3. FastAPI Tour"])
 
-# 1. запрос без передачи информации
-# uv run http localhost:8000/hi
-@app.get("/hi")
+@routes.get("/hi", summary="3-1. запрос без передачи информации")
 def no_param_greet():
+    """
+```uv run http localhost:8000/hi```
+    """
     return f"1. NO params"
 
-# 2. передача информации с помощью директории в адресе
-# uv run http localhost:8000/hi/slava
-@app.get("/hi/{who}")
+
+@routes.get("/hi/{who}", summary="3-11. передача информации с помощью директории в адресе")
 def url_greet(who):
+    """
+С помощощью библиотеки http можно послать GET-запрос и получить ответ от fastapi приложения
+
+```uv run http localhost:8000/hi/slava```
+    """
     return f"2. URL PATH, {who}?"
 
-# 3. передача информации с помощью ключ-значение в адресе
-# uv run http PATCH localhost:8000/hi?who=slava
-@app.patch("/hi")
+
+@routes.patch("/hi", summary="3-15. передача информации с помощью ключ-значение в адресе")
 def query_greet(who):
+    """
+```uv run http PATCH localhost:8000/hi?who=slava```
+    """
     return f"3. QUERY PARAMS, {who}?"
 
-# 4. передача информации в теле запроса
-# uv run http -v POST localhost:8000/hi who=slava
-@app.post("/hi")
+
+@routes.post("/hi", summary="3-21. передача информации в теле запроса")
 def body_greet(who:str=Body(embed=True)):
+    """
+```uv run http -v POST localhost:8000/hi who=slava```
+    """
     return f"4. BODY, {who}?"
 
-# 5. передача информации в заголовке запроса
-# uv run http -v PUT localhost:8000/hi who:slava
-@app.put("/hi")
+
+@routes.put("/hi", summary="3-24 передача информации в заголовке запроса")
 def header_greet(who:str = Header()):
+    """
+```uv run http -v PUT localhost:8000/hi who:slava```
+    """
     return f"5. HEADER, {who}?"
 
-# вывод информации из заголовка запроса
-@app.get("/agent")
+
+@routes.get("/agent", summary="3-26 вывод информации из заголовка запроса")
 def get_agent(user_agent:str = Header()):
     return user_agent
 
-# инъекция кода состояния
+
 code=402
-@app.get("/happy", status_code=code)
+@routes.get("/happy", status_code=code, summary="3-28 инъекция кода состояния")
 def greet():
     return code
 
