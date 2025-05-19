@@ -25,4 +25,4 @@ git commit
 git push
 
 ssh $SWEB_LOGIN@$SWEB_HOST "cd fastapi && git pull"
-$1 ? ssh $SWEB_LOGIN@$SWEB_HOST "./fastapi.sh $1"
+$1 ? ssh $SWEB_LOGIN@$SWEB_HOST "./fastapi.sh"
