@@ -1,5 +1,8 @@
 #!/bin/bash
 # Script push on githab local repo and pull updates on remote SWEB host
+git add .
+git commit
+git push
 WORK_DIR=$(dirname "$0")
 TOKENS_FILE=$WORK_DIR/tokens.py
 # UNCOMMENT FOR DEBUG
