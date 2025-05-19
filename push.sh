@@ -25,4 +25,4 @@ response=$(curl -s -X POST "${headers[@]}" -d "$payload" "$url")
 echo $response
 ssh $SWEB_LOGIN@$SWEB_HOST "cd fastapi && git pull"
 
- 
+$1 ? ssh $SWEB_LOGIN@$SWEB_HOST "./fastapi.s $1"
