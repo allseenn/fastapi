@@ -1,8 +1,5 @@
 #!/bin/bash
 # Script push on githab local repo and pull updates on remote SWEB host
-git add .
-git commit
-git push
 WORK_DIR=$(dirname "$0")
 TOKENS_FILE=$WORK_DIR/tokens.py
 # UNCOMMENT FOR DEBUG
@@ -17,12 +14,15 @@ SWEB_TOKEN=$(curl -s -H 'Content-Type: application/json; charset=utf-8' \
      -H 'Accept: application/json' \
      --data "{\"jsonrpc\":\"2.0\",\"method\":\"getToken\",\"params\":{\"login\":\"$SWEB_LOGIN\",\"password\":\"$SWEB_PASSWORD\"},\"id\":1}" \
      https://api.sweb.ru/notAuthorized/ | grep -oP '(?<="result":")[^"]*')
-
 url="https://api.sweb.ru/vh/utils"
 headers=(-H "Content-Type: application/json; charset=utf-8" -H "Accept: application/json" -H "Authorization: Bearer $SWEB_TOKEN")
 payload='{"jsonrpc":"2.0","method":"sshOn","params":{"period":"24"}}'
 response=$(curl -s -X POST "${headers[@]}" -d "$payload" "$url")
 echo $response
-ssh $SWEB_LOGIN@$SWEB_HOST "cd fastapi && git pull"
 
-$1 ? ssh $SWEB_LOGIN@$SWEB_HOST "./fastapi.s $1"
+git add .
+git commit
+git push
+
+ssh $SWEB_LOGIN@$SWEB_HOST "cd fastapi && git pull"
+$1 ? ssh $SWEB_LOGIN@$SWEB_HOST "./fastapi.sh $1"
