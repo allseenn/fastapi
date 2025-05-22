@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Body, Header, APIRouter, Response
 
-routes = APIRouter(prifix="/api", tags=["Chapter 4. Async, Concurrency and Starlette Tour"])
+routes = APIRouter(prefix="/api", tags=["Chapter 4. Async, Concurrency and Starlette Tour"])
 
 @routes.get("/greet/hi", summary="4-6. Небольшой эндпонит с асинхронностью")
 async def great():
