@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Body, Header, APIRouter, Response
 
-routes = APIRouter(prifix="/greet", tags=["Chapter 4. Async, Concurrency and Starlette Tour"])
+routes = APIRouter(prifix="/api", tags=["Chapter 4. Async, Concurrency and Starlette Tour"])
 
-@routes.get("/hi", summary="4-6. Небольшой эндпонит с асинхронностью")
+@routes.get("/greet/hi", summary="4-6. Небольшой эндпонит с асинхронностью")
 async def great():
     await asyncio.sleep(3)
     return f"Hello, World!"
