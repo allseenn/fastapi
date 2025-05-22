@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Body, Header, APIRouter, Response
 
-routes = APIRouter(tags=["Chapter 3. FastAPI Tour"])
+routes = APIRouter(prefix="/api/hello", tags=["Chapter 3. FastAPI Tour"])
 
 @routes.get("/hi", summary="3-1. запрос без передачи информации")
 def no_param_greet():
