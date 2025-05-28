@@ -1,7 +1,7 @@
 from model import Creature
 from fastapi import APIRouter
 
-routes = APIRouter(prefix="/web", tags=["Chapter 5. Pydantic, Type Hints, and Models Tour"])
+routes = APIRouter(prefix="/api/web", tags=["Chapter 5. Pydantic, Type Hints, and Models Tour"])
 
 
 @routes.get("/creature")
