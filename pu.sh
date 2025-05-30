@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 # Script push on githab local repo and pull updates on remote SWEB host
 WORK_DIR=$(dirname "$0")
 TOKENS_FILE=$WORK_DIR/tokens.py
@@ -18,13 +18,14 @@ url="https://api.sweb.ru/vh/utils"
 headers=(-H "Content-Type: application/json; charset=utf-8" -H "Accept: application/json" -H "Authorization: Bearer $SWEB_TOKEN")
 payload='{"jsonrpc":"2.0","method":"sshOn","params":{"period":"24"}}'
 response=$(curl -s -X POST "${headers[@]}" -d "$payload" "$url")
+
 echo $response
 git pull
 git add .
 git commit
 git push
 
-ssh $SWEB_LOGIN@$SWEB_HOST "cd fastapi && git pull"
+ssh sweb "cd fastapi && git pull"
 
 if [ -n $1 ]; then
     ssh sweb "./fastapi.sh $1"
