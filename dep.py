@@ -1,8 +1,8 @@
-from fastapi import FastAPI, Depends, Params
+from fastapi import FastAPI, Depends, Query
 
 app = FastAPI()
 
-def user_dep(name: str = Params, password: str = Params):
+def user_dep(name: str = Query, password: str = Query):
     return {"name": name, "valid": True}
 
 @app.get("/user")
