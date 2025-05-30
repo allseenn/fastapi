@@ -19,7 +19,7 @@ headers=(-H "Content-Type: application/json; charset=utf-8" -H "Accept: applicat
 payload='{"jsonrpc":"2.0","method":"sshOn","params":{"period":"24"}}'
 response=$(curl -s -X POST "${headers[@]}" -d "$payload" "$url")
 echo $response
-
+git pull
 git add .
 git commit
 git push
