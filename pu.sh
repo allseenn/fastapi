@@ -27,5 +27,5 @@ git push
 ssh $SWEB_LOGIN@$SWEB_HOST "cd fastapi && git pull"
 
 if [ -n $1 ]; then
-    ssh $SWEB_LOGIN@$SWEB_HOST "./fastapi.sh $1"
+    ssh sweb "./fastapi.sh $1"
 fi
