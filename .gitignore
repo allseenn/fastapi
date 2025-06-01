@@ -1,0 +1,82 @@
+### Python ###
+# Виртуальное окружение
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# Кэш интерпретатора и байт-код
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Файлы настроек и переменных окружения
+.env
+.env.local
+.env.dev
+.env.prod
+.env.test
+secrets.ini
+config.ini
+*.env
+.vscode/settings.json
+
+# Дистрибутивы и установочные пакеты
+*.egg-info/
+*.egg
+dist/
+build/
+pip-wheel-metadata/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# Тестовые отчеты и покрытие
+.coverage
+htmlcov/
+.pytest_cache/
+test_reports/
+
+### FastAPI ###
+# Файлы, специфичные для FastAPI (если используются)
+*.db
+*.sqlite
+migrations/
+
+# Статические файлы (если используются)
+staticfiles/
+media/
+
+### IDE ###
+# JetBrains (PyCharm, IntelliJ)
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# macOS
+.DS_Store
+
+### Прочее ###
+# Файлы, специфичные для проекта
+*.csv
+*.xlsx
+*.jsonl
+
+# Резервные копии
+*.bak
+*.backup
+
