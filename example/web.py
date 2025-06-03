@@ -1,5 +1,6 @@
+# 5-11
 from fastapi import APIRouter
-from examples.model import Creature
+from example.model import Creature
 
 routes = APIRouter(prefix="/api/web", tags=["Chapter 5. Pydantic, Type Hints, and Models Tour"])
 

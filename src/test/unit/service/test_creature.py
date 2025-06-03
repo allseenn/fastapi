@@ -1,7 +1,7 @@
 from src.model.creature import Creature
 from src.service import creature as code
 
-sample = Creature(name="yeti", country="CN", area="Hymalayas", description="Hirsute Himalayan", aka="Abominalbe")
+sample = Creature(name="yeti", country="CN", area="Hymalayas", description="Hirsute Himalayan", aka="Abominable Snowman")
 
 def test_create():
     resp = code.create(sample)

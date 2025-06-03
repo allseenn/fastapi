@@ -1,11 +1,11 @@
 from src.model.explorer import Explorer
-import src.fake.explorer as data
+import src.data.explorer as data
 
 def get_all() -> list[Explorer]:
     return data.get_all()
 
 def get_one(name: str) -> Explorer | None:
-    return data.get(id)
+    return data.get_one(name)
 
 def create(explorer: Explorer) -> Explorer:
     return data.create(explorer)

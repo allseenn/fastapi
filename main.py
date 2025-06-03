@@ -2,10 +2,11 @@
 # общие импорты
 from fastapi import FastAPI
 # импорты из примеров
-from examples.hello import routes as hello_routes
-from examples.greet_async import routes as greet_routes
-from examples.web import routes as web_routes
-from examples.dependency import routes as dep_routes
+from example.hello import routes as hello_routes
+from example.greet_async import routes as greet_routes
+from example.web import routes as web_routes
+from example.tags.web.tag import routes as tags_routes
+from example.dependency import routes as dep_routes
 # импорты основной программы
 from src.web import explorer, creature
 
@@ -19,6 +20,7 @@ Bill Lubanovic
 app.include_router(hello_routes)
 app.include_router(greet_routes)
 app.include_router(web_routes)
+app.include_router(tags_routes)
 app.include_router(dep_routes)
 
 # Подключаем роутеры из основного пакета приложения src

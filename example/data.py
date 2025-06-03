@@ -1,4 +1,5 @@
-from examples.model import Creature
+# 5.10. Определение фиктивных данных в файле data.py
+from example.model import Creature
 
 _creatures: list[Creature] = [
     Creature(name="yeti", description="Hapless Himalayan", country="CN", area="Himalayas", aka="Abominable Snowman"),
