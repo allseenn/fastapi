@@ -1,29 +1,40 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from src.model.creature import Creature
-import src.data.creature as service
+import src.service.creature as service
+from src.errors import Missing, Duplicate
 
-router = APIRouter(prefix="/creature", tags=["Chapter 8. Web app"])
+router = APIRouter(prefix="/creature", tags=["WebApp"])
 
+@router.get("")
 @router.get("/")
 def get_all() -> list[Creature]:
     return service.get_all()
 
 @router.get("/{name}")
-def get_one(name: str) -> Creature | None:
-    return service.get_one(name)
+def get_one(name: str) -> Creature:
+    try:
+        return service.get_one(name)
+    except Missing as exc:
+        raise HTTPException(status_code=404, detail=exc.msg)
 
-@router.post("/")
+@router.post("", status_code=201)
+@router.post("/", status_code=201)
 def create(creature: Creature) -> Creature:
-    return service.create(creature)
+    try:
+        return service.create(creature)
+    except Duplicate as exc:
+        raise HTTPException(status_code=409, detail=exc.msg)
 
 @router.patch("/{name}")
 def modify(creature: Creature) -> Creature:
-    return service.modify(creature)
+    try:
+        return service.modify(creature)
+    except Missing as exc:
+        raise HTTPException(status_code=404, detail=exc.msg)
 
-@router.put("/")
-def replace(creature: Creature) -> Creature:
-    return service.replace(creature)
-
-@router.delete("/{name}")
-def delete(dname: str):
-    return None
+@router.delete("/{name}", status_code=204)
+def delete(name: str):
+    try:
+        return service.delete(name)
+    except Missing as exc:
+        raise HTTPException(status_code=404, detail=exc.msg)

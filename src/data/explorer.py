@@ -8,7 +8,7 @@ def row_to_model(row: tuple) -> Explorer:
     return Explorer(name=row[0], description=row[1], country=row[2])
 
 def model_to_dict(explorer: Explorer) -> dict:
-    return explorer.dict() if explorer else None
+    return explorer.model_dump() if explorer else None
 
 def get_one(name: str) -> Explorer:
     qry = "select * from explorer where name=:name"

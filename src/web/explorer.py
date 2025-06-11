@@ -3,7 +3,7 @@ from src.model.explorer import Explorer
 import src.service.explorer as service
 from src.errors import Missing, Duplicate
 
-router = APIRouter(prefix="/explorer", tags=["Chapter 8. Web app"])
+router = APIRouter(prefix="/explorer", tags=["WebApp"])
 
 @router.get("")
 @router.get("/")
@@ -33,8 +33,8 @@ def modify(explorer: Explorer) -> Explorer:
         raise HTTPException(status_code=404, detail=exc.msg)
 
 @router.delete("/{name}", status_code=204)
-def delete(dname: str):
+def delete(name: str):
     try:
-        return service.delete(dname)
+        return service.delete(name)
     except Missing as exc:
         raise HTTPException(status_code=404, detail=exc.msg)

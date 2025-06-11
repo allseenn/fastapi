@@ -7,8 +7,9 @@ from example.greet_async import routes as greet_routes
 from example.web import routes as web_routes
 from example.tags.web.tag import routes as tags_routes
 from example.dependency import routes as dep_routes
+from example.auth import routes as auth_routes
 # импорты основной программы
-from src.web import explorer, creature
+from src.web import explorer, creature, user
 
 app = FastAPI(title="FastAPI",
 description="""
@@ -22,10 +23,11 @@ app.include_router(greet_routes)
 app.include_router(web_routes)
 app.include_router(tags_routes)
 app.include_router(dep_routes)
-
+app.include_router(auth_routes)
 # Подключаем роутеры из основного пакета приложения src
 app.include_router(explorer.router)
 app.include_router(creature.router)
+app.include_router(user.router)
 
 if __name__ == "__main__":
     import uvicorn
