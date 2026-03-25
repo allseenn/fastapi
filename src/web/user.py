@@ -1,3 +1,4 @@
+from datetime import timedelta
 import os
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -24,8 +25,8 @@ async def create_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     if not user:
         unauthed()
     expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = service.create_access_token(data={"sub": user.username}, expires_delta=expires)
-    return {"access_token": user.username, "token_type": "bearer"}
+    access_token = service.create_access_token(data={"sub": user.name}, expires=expires)
+    return {"access_token": access_token, "token_type": "bearer"}
 
 @router.get("/token")
 def get_access_token(token: str = Depends(oauth2_dep)) -> dict:
